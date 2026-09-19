@@ -29,8 +29,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun DraweScaffold(
     navController: NavController,
-    content: @Composable () -> Unit,
-    open: DrawerState.Companion.() -> Unit
+    content: @Composable () -> Unit
 ){
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -65,7 +64,7 @@ fun DraweScaffold(
                     navigationIcon = {
                         IconButton(
                             onClick = {
-                                scope.launch{ DrawerState.open() }
+                                scope.launch{ drawerState.open() }
                             }
                         ){
                             Icon(Icons.Default.Menu, "Menu")
