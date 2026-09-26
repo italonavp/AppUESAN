@@ -1,5 +1,6 @@
 package com.example.appuesan.presentation.auth
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,9 +21,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ModifierInfo
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.appuesan.data.remote.FireBaseAuthManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Composable
 
@@ -31,6 +37,7 @@ fun RegisterScreen(navController: NavController){
     var name by remember {mutableStateOf("") }
     var password by remember {mutableStateOf("") }
     var confirmPassword by remember {mutableStateOf("") }
+    val context = LocalContext.current
 
     Column(modifier = Modifier
         .padding(all = 16.dp)
@@ -71,7 +78,18 @@ fun RegisterScreen(navController: NavController){
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = {navController.navigate("Login")},
+            onClick = {
+                CoroutineScope(Dispatchers.Main).launch {
+                    val result = FireBaseAuthManager.registerUser(email = email, password = password, name = name)
+                    if (result.isSuccess)
+                        navController.navigate("login")
+                    else {
+                        val error = result.exceptionOrNull()?.message ?: "Error desconocido"
+                        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+
+                    }
+                }
+                },
             enabled =  password.isNotBlank() && confirmPassword.isNotBlank() && password == confirmPassword && email.contains("@"),
             modifier = Modifier.fillMaxWidth()
         ) {

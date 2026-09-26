@@ -1,7 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
-}
+    // Add the Google services Gradle plugin
+    id("com.google.gms.google-services")
+    }
 
 android {
     namespace = "com.example.appuesan"
@@ -50,6 +52,15 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.7.0")
     //Material Icons
     implementation("androidx.compose.material:material-icons-core:1.7.8")
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:34.19.0"))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+
+
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    // https://firebase.google.com/docs/android/setup#available-libraries
 
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
