@@ -8,6 +8,7 @@ import com.example.appuesan.presentation.Permissions.GalleryPermissionsScreen
 import com.example.appuesan.presentation.auth.LoginScreen
 import com.example.appuesan.presentation.auth.RegisterScreen
 import com.example.appuesan.presentation.home.HomeScreen
+import com.example.appuesan.presentation.realtime.FirestoreRealtimeScreen
 
 @Composable
 fun AppNavGraph(){
@@ -26,6 +27,11 @@ fun AppNavGraph(){
         composable("permissions"){
             DraweScaffold(navController) {
                 GalleryPermissionsScreen()
+            }
+        }
+        composable("realtime"){
+            DraweScaffold(navController) {
+                FirestoreRealtimeScreen()
             }
         }
     }
