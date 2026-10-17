@@ -58,6 +58,14 @@ dependencies {
     implementation(libs.firebase.firestore)
 
 
+    //Supabase Storage
+    implementation(platform(libs.supabase.bom))
+    implementation(libs.supabase.storage.kt)
+    //Ktor
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+
+
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies
     // https://firebase.google.com/docs/android/setup#available-libraries

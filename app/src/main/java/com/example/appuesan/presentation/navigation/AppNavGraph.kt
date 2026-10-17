@@ -9,6 +9,7 @@ import com.example.appuesan.presentation.auth.LoginScreen
 import com.example.appuesan.presentation.auth.RegisterScreen
 import com.example.appuesan.presentation.home.HomeScreen
 import com.example.appuesan.presentation.realtime.FirestoreRealtimeScreen
+import com.example.appuesan.presentation.supabase.SupabaseStorageScreen
 
 @Composable
 fun AppNavGraph(){
@@ -32,6 +33,11 @@ fun AppNavGraph(){
         composable("realtime"){
             DraweScaffold(navController) {
                 FirestoreRealtimeScreen()
+            }
+        }
+        composable("supabase"){
+            DraweScaffold(navController) {
+                SupabaseStorageScreen()
             }
         }
     }
