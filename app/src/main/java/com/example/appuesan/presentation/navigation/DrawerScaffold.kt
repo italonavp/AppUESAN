@@ -23,6 +23,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.appuesan.data.remote.FireBaseAuthManager
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,6 +67,20 @@ fun DraweScaffold(
                     selected = false,
                     onClick ={
                         navController.navigate("supabase")
+                    }
+                )
+                NavigationDrawerItem(
+                    label= {Text("Api Football")},
+                    selected = false,
+                    onClick ={
+                        navController.navigate("apifootball")
+                    }
+                )
+                NavigationDrawerItem(
+                    label= {Text("Firebase logout")},
+                    selected = false,
+                    onClick ={
+                        FireBaseAuthManager.logout()
                     }
                 )
             }
